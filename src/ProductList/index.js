@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Product from '../Product'
 import axios from 'axios';
 
 
@@ -22,12 +23,10 @@ function ProductList() {
         </p>
 
         <div className="product-wrapper">
-            {data.map(item => (
-                <div key={item.id}>
-                    <h3>{item.name}</h3>
-                    <p>{item.description}</p>
+            {data.map(product => (
+                <Product product={product}>
                     
-                </div>
+                </Product>
             ))}
         </div>
                 
