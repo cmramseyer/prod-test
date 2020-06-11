@@ -28,6 +28,20 @@
   color: #61dafb;
 }
 
+.App-body {
+  display: grid;
+}
+
+.product-wrapper .App-product {
+  width: 300px;
+  display: block;
+  float: left;
+}
+
+.App-footer {
+  display: block;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

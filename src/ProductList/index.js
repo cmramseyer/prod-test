@@ -3,7 +3,7 @@ import Product from '../Product'
 import axios from 'axios';
 
 
-function ProductList() {
+function ProductList(props) {
 
     const [data, setData] = useState([]);
 
@@ -23,11 +23,19 @@ function ProductList() {
         </p>
 
         <div className="product-wrapper">
-            {data.map(product => (
-                <Product product={product}>
-                    
-                </Product>
-            ))}
+          <div className="container">
+            <div className="row">
+              {data.map(product => (
+                  <Product 
+                    setSelectedProductId={props.setSelectedProductId}
+                    product={product}
+                    setShowProductModal={props.setShowProductModal}>
+                      
+                  </Product>
+                  
+              ))}
+            </div>
+          </div>
         </div>
                 
     </div>
