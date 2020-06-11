@@ -14,7 +14,7 @@ function SelectedProduct(props) {
 
             if(props.selectedProductId != null) {
                 const result = await axios(
-                `http://localhost:3001/api/v1/products/${props.selectedProductId}.json`,
+                `${process.env.REACT_APP_API_HOST}/api/v1/products/${props.selectedProductId}.json`,
                 );
     
                 setProductData(result.data);

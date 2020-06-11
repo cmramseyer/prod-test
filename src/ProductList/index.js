@@ -9,7 +9,7 @@ function ProductList(props) {
 
     useEffect(async () => {
         const result = await axios(
-          'http://localhost:3001/api/v1/products.json',
+          `${process.env.REACT_APP_API_HOST}/api/v1/products.json`,
         );
      
         setData(result.data);
