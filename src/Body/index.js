@@ -11,13 +11,24 @@ function Body(props) {
   const handleClose = () => setShowProductModal(false);
   const handleShow = () => setShowProductModal(true);
 
+  
   const [searchKeywords, setSearchKeywords] = useState("");
+
+  const [productsInCart, setProductsInCart] = useState([]);
 
   function handleSearchKeyword(e){
     setSearchKeywords(e.target.value);
     console.log("search keywords value");
     console.log(searchKeywords);
   }
+
+  function handleAddToCart() {
+    console.log(props.selectedProductId);
+    setProductsInCart(productsInCart.concat(props.selectedProductId));
+    console.log("CART!");
+    console.log(productsInCart);
+  }
+
 
   
     return (
@@ -28,13 +39,17 @@ function Body(props) {
             <Modal.Title>Product details</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <SelectedProduct selectedProductId={props.selectedProductId}></SelectedProduct>
+            <SelectedProduct 
+              selectedProductId={props.selectedProductId}
+              >
+
+            </SelectedProduct>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
+            <Button variant="primary" onClick={handleAddToCart}>
               Add to cart
             </Button>
           </Modal.Footer>

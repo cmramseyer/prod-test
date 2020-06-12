@@ -44,7 +44,9 @@ function ProductList(props) {
                   <Product 
                     setSelectedProductId={props.setSelectedProductId}
                     product={product}
-                    setShowProductModal={props.setShowProductModal}>
+                    setShowProductModal={props.setShowProductModal}
+                    addProductsInCart={props.addProductsInCart}
+                    >
                       
                   </Product>
                   
