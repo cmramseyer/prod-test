@@ -7,13 +7,28 @@ function ProductList(props) {
 
     const [data, setData] = useState([]);
 
-    useEffect(async () => {
-        const result = await axios(
-          `${process.env.REACT_APP_API_HOST}/api/v1/products.json`,
-        );
+    useEffect(() => {
+      async function fetchData() {
+        console.log("yahoooo");
+        console.log(props.searchKeywords)
+        var result;
+        if (props.searchKeywords === "") {
+          result = await axios(
+            `${process.env.REACT_APP_API_HOST}/api/v1/products.json`,
+          );
+        }
+        else {
+          console.log("entra acaaa locooo");
+          result = await axios(
+            `${process.env.REACT_APP_API_HOST}/api/v1/results/?keywords=${props.searchKeywords}`,
+          );
+        }
+          
      
         setData(result.data);
-      }, []);
+      }
+      fetchData();
+    }, [props.searchKeywords]);
     
 
   return (

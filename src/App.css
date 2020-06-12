@@ -42,6 +42,14 @@
   display: block;
 }
 
+.search-bar {
+  width: 400px;
+  margin: auto;
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

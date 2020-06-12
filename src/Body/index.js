@@ -8,10 +8,16 @@ import Modal from 'react-bootstrap/Modal';
 function Body(props) {
 
   const [showProductModal, setShowProductModal] = useState(false);
-
   const handleClose = () => setShowProductModal(false);
   const handleShow = () => setShowProductModal(true);
 
+  const [searchKeywords, setSearchKeywords] = useState("");
+
+  function handleSearchKeyword(e){
+    setSearchKeywords(e.target.value);
+    console.log("search keywords value");
+    console.log(searchKeywords);
+  }
 
   
     return (
@@ -34,6 +40,11 @@ function Body(props) {
           </Modal.Footer>
         </Modal>
 
+
+        <div>
+          <input type="text" className="input search-bar" placeholder="Search..." onChange={handleSearchKeyword} />
+        </div>
+
           <p>
               Body
           </p>
@@ -49,7 +60,10 @@ function Body(props) {
           
           <ProductList 
             setSelectedProductId={props.setSelectedProductId}
-            setShowProductModal={setShowProductModal}>
+            setShowProductModal={setShowProductModal}
+            searchKeywords={searchKeywords}
+            >
+            
 
           </ProductList>
       </div>
