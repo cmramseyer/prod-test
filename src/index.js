@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer, useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -8,9 +8,12 @@ import Routes from './routes';
 
 Sentry.init({dsn: process.env.REACT_APP_SENTRY_DNS});
 
+
 ReactDOM.render(
   <React.StrictMode>
+    
     <App />
+    
   </React.StrictMode>,
   document.getElementById('root')
 );

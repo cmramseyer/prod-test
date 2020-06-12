@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Product from '../Product'
+import UserContext from '../UserContext'
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 
 function SelectedProduct(props) {
 
     const [productData, setProductData] = useState([]);
     
+    const [user, toggle, setToggle] = useContext(UserContext)
+
+    function handleSetToggle(){
+        toggle == "NO" ? setToggle("YES") : setToggle("NO");
+    }
+
     useEffect(() => {
         async function fetchData() {
             console.log("useEffect!!");
@@ -34,6 +42,9 @@ function SelectedProduct(props) {
         <div className="App-product">
             <p>{productData.name}</p>
             <p>{productData.description}</p>
+            <Button variant="secondary" onClick={handleSetToggle}>
+              toggle
+            </Button>            
             
         </div>
     )

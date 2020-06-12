@@ -7,10 +7,16 @@ import Body from './Body';
 import Footer from './Footer';
 import { BrowserRouter } from "react-router-dom";
 import Routes from './routes';
+import UserContext from './UserContext'
+
 
 function App() {
   const [counter, setCounter] = useState(0);
   const [selectedProductId, setSelectedProductId] = useState(null);
+
+  const user = {name: "charlie", lang: "EN"};
+  const [toggle, setToggle] = useState("NO");
+
 
   var props = {
     counter: counter,
@@ -20,16 +26,18 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Header counter={counter} setCounter={setCounter}></Header>
+    <UserContext.Provider value={[user, toggle, setToggle]}>
+      <div className="App">
+        <Header counter={counter} setCounter={setCounter}></Header>
 
-      <BrowserRouter>
-        <Routes {...props}>
-        </Routes>
+        <BrowserRouter>
+          <Routes {...props}>
+          </Routes>
         
-      </BrowserRouter>
-      <Footer></Footer>
-    </div>
+        </BrowserRouter>
+        <Footer></Footer>
+      </div>
+    </UserContext.Provider>
   );
 }
 
