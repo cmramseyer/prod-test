@@ -8,15 +8,22 @@ function Header({counter, setCounter}) {
     <header className="App-header">
     <img src={logo} className="App-logo" alt="logo" />
     <p>
-        Edit <code>src/App.js</code> and save to reload.
+        
     </p>
     <a
         className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
+        href="/"
         rel="noopener noreferrer"
     >
-        Learn React
+        Products
+    </a>
+
+    <a
+        className="App-link"
+        href="/cart"
+        rel="noopener noreferrer"
+    >
+        My cart
     </a>
     <p>{counter}</p>
     </header>
