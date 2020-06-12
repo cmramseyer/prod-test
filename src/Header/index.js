@@ -3,13 +3,14 @@ import UserContext from '../UserContext'
 import logo from '.././logo.svg';
 
 
-function Header({counter, setCounter}) {
+function Header(props) {
 
   const [user, toggle, setToggle] = useContext(UserContext)
     
   return (
     <header className="App-header">
     <img src={logo} className="App-logo" alt="logo" />
+    
     <p>
         user: {user.name}, language: {user.lang}, toggle: {toggle}
     </p>
@@ -28,7 +29,7 @@ function Header({counter, setCounter}) {
     >
         My cart
     </a>
-    <p>{counter}</p>
+    <p>{props.counter}</p>
     </header>
   );
 }

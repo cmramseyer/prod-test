@@ -25,9 +25,10 @@ function App() {
     setSelectedProductId: setSelectedProductId
   }
 
+
   return (
     <UserContext.Provider value={[user, toggle, setToggle]}>
-      <div className="App">
+      <div className={`App`}>
         <Header counter={counter} setCounter={setCounter}></Header>
 
         <BrowserRouter>
