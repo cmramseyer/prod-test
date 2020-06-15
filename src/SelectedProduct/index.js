@@ -3,6 +3,7 @@ import Product from '../Product'
 import UserContext from '../UserContext'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
+import RateProduct from '../RateProduct';
 
 function SelectedProduct(props) {
 
@@ -44,8 +45,9 @@ function SelectedProduct(props) {
             <p>{productData.description}</p>
             <Button variant="secondary" onClick={handleSetToggle}>
               toggle
-            </Button>            
-            
+            </Button>
+            <p>Average Rating: {productData.average_rating}</p>            
+            <RateProduct selectedProductId={props.selectedProductId}></RateProduct>
         </div>
     )
 }
