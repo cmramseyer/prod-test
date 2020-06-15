@@ -6,6 +6,7 @@ function RateProduct(props) {
 
     const [rating, setRating] = useState(5);
     const [isRated, setIsRated] = useState(false)
+    const [isRatedError, setIsRatedError] = useState(false)
 
     function handleRateChange(e){
         setRating(e.target.value);
@@ -20,6 +21,9 @@ function RateProduct(props) {
             console.log(result)
             setRating(result.data.rating)
             setIsRated(true);
+        })
+        .catch(error => {
+            setIsRatedError(true)
         })
    
 
@@ -39,6 +43,10 @@ function RateProduct(props) {
                 {
                     isRated && <p>Rated {rating}</p>
                 }
+                {
+                    isRatedError && <p>Error!</p>
+                }
+
             </div>
             
 
