@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import Rater from 'react-rater'
+import 'react-rater/lib/react-rater.css'
 
 function RateProduct(props) {
 
-    const [rating, setRating] = useState(5);
+    const [userRating, setUserRating] = useState(null);
     const [isRated, setIsRated] = useState(false)
     const [isRatedError, setIsRatedError] = useState(false)
 
-    function handleRateChange(e){
-        setRating(e.target.value);
-    }
-
-    function handleRating(){
-        
-        const params = {product_id: props.selectedProductId, rating: rating}
+    function handleOnRate(rating){
+        console.log("lala")
+        console.log(props)
+        console.log(rating)
+        const params = {product_id: props.selectedProductId, rating: rating.rating}
         
         axios.post(`${process.env.REACT_APP_API_HOST}/api/v1/rate/`, params)
         .then(result => {
             console.log(result)
-            setRating(result.data.rating)
+            setUserRating(result.data.rating)
             setIsRated(true);
         })
         .catch(error => {
@@ -32,21 +32,12 @@ function RateProduct(props) {
     return (
 
             <div>
-                { !isRated &&
-                    <div className="rate-product">
-                        <input type="number" className="input" onChange={handleRateChange} />
-                        <Button variant="secondary" onClick={handleRating}>
-                            Rate
-                        </Button>
-                    </div>
-                }
-                {
-                    isRated && <p>Rated {rating}</p>
-                }
-                {
-                    isRatedError && <p>Error!</p>
-                }
-
+                
+                <div className="rate-product">
+                    { !isRated && <Rater total={5} rating={3} onRate={handleOnRate} /> }
+                    { isRated && <Rater total={5} rating={userRating} interactive={false} /> }
+                </div>
+                
             </div>
             
 
