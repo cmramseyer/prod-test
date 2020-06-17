@@ -5,7 +5,7 @@ import logo from '.././logo.svg';
 
 function Header(props) {
 
-  const [user, toggle, setToggle] = useContext(UserContext)
+  const [user, toggle, setToggle, productsInCart, setProductsInCart] = useContext(UserContext)
     
   return (
     <header className="App-header">

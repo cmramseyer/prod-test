@@ -17,6 +17,7 @@ function App() {
   const user = {name: "charlie", lang: "EN"};
   const [toggle, setToggle] = useState("NO");
 
+  const [productsInCart, setProductsInCart] = useState([]);
 
   var props = {
     counter: counter,
@@ -27,7 +28,7 @@ function App() {
 
 
   return (
-    <UserContext.Provider value={[user, toggle, setToggle]}>
+    <UserContext.Provider value={[user, toggle, setToggle, productsInCart, setProductsInCart]}>
       <div className={`App`}>
         <Header counter={counter} setCounter={setCounter}></Header>
 

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ProductList from '../ProductList';
 import SelectedProduct from '../SelectedProduct';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import UserContext from '../UserContext'
+
 
 function Body(props) {
 
@@ -11,10 +13,11 @@ function Body(props) {
   const handleClose = () => setShowProductModal(false);
   const handleShow = () => setShowProductModal(true);
 
-  
+  const [user, toggle, setToggle, productsInCart, setProductsInCart] = useContext(UserContext)
+
   const [searchKeywords, setSearchKeywords] = useState("");
 
-  const [productsInCart, setProductsInCart] = useState([]);
+  
 
   function handleSearchKeyword(e){
     setSearchKeywords(e.target.value);
@@ -23,8 +26,9 @@ function Body(props) {
   }
 
   function handleAddToCart() {
-    console.log(props.selectedProductId);
-    setProductsInCart(productsInCart.concat(props.selectedProductId));
+    console.log(`lala ${props.selectedProductId}`);
+    console.log(`lala2 ${productsInCart}`);
+    setProductsInCart([...productsInCart, props.selectedProductId]);
     console.log("CART!");
     console.log(productsInCart);
   }
@@ -33,6 +37,8 @@ function Body(props) {
   
     return (
       <div className="App-body">
+
+    <p>{productsInCart} size {productsInCart.length}</p>
 
         <Modal show={showProductModal} onHide={handleClose}>
           <Modal.Header closeButton>
