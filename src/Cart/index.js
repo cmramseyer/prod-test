@@ -1,21 +1,27 @@
 import React, { useState, useContext } from 'react';
 import UserContext from '../UserContext'
+import { connect } from 'react-redux'
 
 function Cart(props) {
 
-    const [user, toggle, setToggle, productsInCart, setProductsInCart] = useContext(UserContext)
+    const [user, toggle, setToggle] = useContext(UserContext)
   
     return (
       <div className="App-cart">
 
-        
           <p>
-              {productsInCart.length}
+              {props.productsInCart}
           </p>
-              
           
       </div>
     );
 }
 
-export default Cart;
+function mapStateToProps(state){
+    console.log("state")
+    console.log(state)
+    return { productsInCart: state.productsInCart }
+}
+  
+
+export default connect(mapStateToProps)(Cart);

@@ -8,6 +8,7 @@ import Footer from './Footer';
 import { BrowserRouter } from "react-router-dom";
 import Routes from './routes';
 import UserContext from './UserContext'
+import { Provider, useSelector, useDispatch } from 'react-redux'
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 
 
   return (
+    
     <UserContext.Provider value={[user, toggle, setToggle, productsInCart, setProductsInCart]}>
       <div className={`App`}>
         <Header counter={counter} setCounter={setCounter}></Header>
@@ -40,6 +42,7 @@ function App() {
         <Footer></Footer>
       </div>
     </UserContext.Provider>
+    
   );
 }
 

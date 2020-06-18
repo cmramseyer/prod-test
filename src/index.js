@@ -5,14 +5,20 @@ import App from './App';
 import * as Sentry from '@sentry/browser';
 import * as serviceWorker from './serviceWorker';
 import Routes from './routes';
+import { Provider } from 'react-redux';
+import store from './store/index'
+console.log(store)
+
+window.store = store;
 
 Sentry.init({dsn: process.env.REACT_APP_SENTRY_DNS});
 
 
 ReactDOM.render(
   <React.StrictMode>
-    
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
     
   </React.StrictMode>,
   document.getElementById('root')

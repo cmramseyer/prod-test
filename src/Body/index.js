@@ -5,6 +5,9 @@ import SelectedProduct from '../SelectedProduct';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import UserContext from '../UserContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { cartReducer } from '../Reducers/cartReducers'
+import { addToCart } from '../Actions/index';
 
 
 function Body(props) {
@@ -13,11 +16,12 @@ function Body(props) {
   const handleClose = () => setShowProductModal(false);
   const handleShow = () => setShowProductModal(true);
 
-  const [user, toggle, setToggle, productsInCart, setProductsInCart] = useContext(UserContext)
+  const [user, toggle, setToggle] = useContext(UserContext)
 
   const [searchKeywords, setSearchKeywords] = useState("");
 
-  
+  const dispatch = useDispatch();
+  const ProductsInCart = useSelector(state => state.productsInCart)
 
   function handleSearchKeyword(e){
     setSearchKeywords(e.target.value);
@@ -26,11 +30,14 @@ function Body(props) {
   }
 
   function handleAddToCart() {
-    console.log(`lala ${props.selectedProductId}`);
-    console.log(`lala2 ${productsInCart}`);
-    setProductsInCart([...productsInCart, props.selectedProductId]);
-    console.log("CART!");
-    console.log(productsInCart);
+    //console.log(`lala ${props.selectedProductId}`);
+    //console.log(`lala2 ${productsInCart}`);
+    //setProductsInCart([...productsInCart, props.selectedProductId]);
+    //console.log("CART!");
+    //console.log(productsInCart);
+
+    dispatch(addToCart(props.selectedProductId));
+
   }
 
 
@@ -38,7 +45,7 @@ function Body(props) {
     return (
       <div className="App-body">
 
-    <p>{productsInCart} size {productsInCart.length}</p>
+    <p>{ProductsInCart} size {ProductsInCart}</p>
 
         <Modal show={showProductModal} onHide={handleClose}>
           <Modal.Header closeButton>
