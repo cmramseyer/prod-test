@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-
+import { setAuthToken } from '../../store/actions';
 
 import Input from '../../components/UI/CustomInput';
 import Button from 'react-bootstrap/Button';
@@ -101,7 +101,7 @@ class Login extends Component {
 
                 localStorage.setItem('token', `Bearer ${userData.auth_token}`);
 
-                this.props.login(userData)
+                this.props.setAuthToken(userData)
 
                 this.props.history.push("/")
 
@@ -168,13 +168,6 @@ const mapStateToProps = state => {
     return {
         userToken: state.auth.token
     };
-}
-  
-const mapDispatchToProps = dispatch => {
-    return {
-      login: (userData) => dispatch({type: 'SET_AUTH_TOKEN', payload: {userData: userData}})
-    };
-}
-  
+}  
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, { setAuthToken })(Login);

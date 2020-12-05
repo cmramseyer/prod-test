@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addToCart } from '../../store/actions';
 
 import ProductList from '../../components/ProductList';
 import Product from '../../components/Product';
@@ -98,7 +99,7 @@ class Products extends Component {
     console.log('handleAdd')
     console.log(productId)
     const product = this.state.products.find(prd => prd.id === productId)
-    this.props.onAdd(product);
+    this.props.addToCart(product);
 
   }
 
@@ -166,10 +167,10 @@ const mapStateToProps = state => {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAdd: (prd) => dispatch({type: 'ADD_TO_CART', payload: {product: prd}})
-  };
-}
+//const mapDispatchToProps = dispatch => {
+//  return {
+//    addToCart: (prd) => dispatch(addToCart)
+//  };
+//}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, { addToCart })(Products);

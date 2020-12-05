@@ -8,6 +8,7 @@ const cartReducer = (state = initialState, action) => {
     console.log(action)
     switch (action.type) {
         case 'ADD_TO_CART':
+            console.log('aaaaaaaaaaaaaa')
             const product = action.payload.product
             return {
                 ...state,

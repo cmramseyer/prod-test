@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addKitToCart } from '../../store/actions';
 
 import ProductKit from '../../components/ProductKit';
 import Spinner from '../../components/UI/Spinner'
@@ -49,7 +50,7 @@ class Kit extends Component {
     
     console.log('handleAddKitToCart')
     console.log(this.state.productsKitListForCart)
-    this.props.onAddKitToCart(this.state.productsKitListForCart)
+    this.props.addKitToCart(this.state.productsKitListForCart)
 
     
     // empty current kit selecion
@@ -161,10 +162,4 @@ const mapStateToProps = state => {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onAddKitToCart: (kit) => dispatch({type: 'ADD_KIT_TO_CART', payload: {productsKitListForCart: kit}})
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Kit);
+export default connect(mapStateToProps, { addKitToCart })(Kit);

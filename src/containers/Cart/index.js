@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { emptyCart } from '../../store/actions';
 import { Redirect } from 'react-router-dom';
 
 import withErrorHandler from '../../hoc/withErrorHandler';
@@ -231,10 +232,4 @@ const mapStateToProps = state => {
     };
 }
   
-const mapDispatchToProps = dispatch => {
-    return {
-      emptyCart: () => dispatch({type: 'EMPTY_CART'})
-    };
-}
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(mapStateToProps, { emptyCart })(Cart);

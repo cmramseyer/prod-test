@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { emptyCart, logout } from '../../store/actions';
 import {Link} from 'react-router-dom';
 import Aux from '../../hoc/Aux';
 
@@ -81,19 +82,13 @@ const layout = (props) => {
 }
 
 const mapStateToProps = state => {
-    return {
-      prdsCart: state.cart.productsCart,
-      isAuthenticated: state.auth.isAuthenticated,
-      username: state.auth.username
-    };
-  }
-  
-  const mapDispatchToProps = dispatch => {
-    return {
-      emptyCart: () => dispatch({type: 'EMPTY_CART'}),
-      logout: () => dispatch({type: 'LOGOUT'})
-    };
-  }
+  return {
+    prdsCart: state.cart.productsCart,
+    isAuthenticated: state.auth.isAuthenticated,
+    username: state.auth.username
+  };
+}
   
 
-export default withErrorHandler(connect(mapStateToProps, mapDispatchToProps)(layout), axios);
+
+export default withErrorHandler(connect(mapStateToProps, { emptyCart, logout })(layout), axios);

@@ -1,7 +1,7 @@
 import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import Cart from '../Cart';
+import Cart from '.';
 import CustomTable from '../CustomTable';
 
 configure({adapter: new Adapter()});
