@@ -11,7 +11,7 @@ import reducer from './store/reducer';
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 
-// Sentry.init({dsn: process.env.REACT_APP_SENTRY_DNS});
+Sentry.init({dsn: process.env.REACT_APP_SENTRY_DNS});
 
 
 ReactDOM.render(
