@@ -157,7 +157,7 @@ class Kit extends Component {
 
 const mapStateToProps = state => {
   return {
-    prdsCart: state.productsCart
+    prdsCart: state.cart.productsCart
   };
 }
 

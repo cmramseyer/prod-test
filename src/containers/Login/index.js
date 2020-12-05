@@ -166,7 +166,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        userToken: state.token
+        userToken: state.auth.token
     };
 }
   

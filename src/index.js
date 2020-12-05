@@ -6,9 +6,10 @@ import * as Sentry from '@sentry/browser';
 import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux';
-import reducer from './store/reducer';
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+import store from './store';
+
+// const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 
 Sentry.init({dsn: process.env.REACT_APP_SENTRY_DNS});
@@ -16,7 +17,7 @@ Sentry.init({dsn: process.env.REACT_APP_SENTRY_DNS});
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store()}>
       <App />
     </Provider>
     

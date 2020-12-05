@@ -225,9 +225,9 @@ class Cart extends Component {
   
 const mapStateToProps = state => {
     return {
-        prdsCart: state.productsCart,
-        userId: state.userId,
-        isAuthenticated: state.isAuthenticated
+        prdsCart: state.cart.productsCart,
+        userId: state.auth.userId,
+        isAuthenticated: state.auth.isAuthenticated
     };
 }
   

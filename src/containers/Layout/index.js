@@ -82,9 +82,9 @@ const layout = (props) => {
 
 const mapStateToProps = state => {
     return {
-      prdsCart: state.productsCart,
-      isAuthenticated: state.isAuthenticated,
-      username: state.username
+      prdsCart: state.cart.productsCart,
+      isAuthenticated: state.auth.isAuthenticated,
+      username: state.auth.username
     };
   }
   
