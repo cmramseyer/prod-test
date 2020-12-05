@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ProductKit from '../ProductKit';
-import Spinner from '../Spinner'
+import ProductKit from '../../components/ProductKit';
+import Spinner from '../../components/UI/Spinner'
 import Button from 'react-bootstrap/Button';
 
-import CustomModal from '../CustomModal';
-import axios from '../axios';
+import CustomModal from '../../components/UI/CustomModal';
+import axios from '../../axios';
 
 
 class Kit extends Component {

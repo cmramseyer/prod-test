@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import * as Sentry from '@sentry/browser';
 import * as serviceWorker from './serviceWorker';
-import Routes from './routes';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux';
 import reducer from './store/reducer';

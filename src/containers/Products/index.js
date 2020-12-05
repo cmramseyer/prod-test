@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ProductList from '../ProductList';
-import Product from '../Product';
+import ProductList from '../../components/ProductList';
+import Product from '../../components/Product';
 
-import CustomModal from '../CustomModal';
-import axios from '../axios';
+import CustomModal from '../../components/UI/CustomModal';
+import axios from '../../axios';
 
 
 class Products extends Component {

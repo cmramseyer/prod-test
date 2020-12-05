@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 
-import Input from '../CustomInput';
+import Input from '../../components/UI/CustomInput';
 import Button from 'react-bootstrap/Button';
-import Aux from '../hoc/Aux';
+import Aux from '../../hoc/Aux';
 
-import axios from '../axios';
+import axios from '../../axios';
 
 
 class Login extends Component {

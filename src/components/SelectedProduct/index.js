@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Product from '../Product'
-import UserContext from '../UserContext'
+import UserContext from '../../UserContext'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
-import RateProduct from '../RateProduct';
+import RateProduct from '../../containers/RateProduct';
 
 function SelectedProduct(props) {
 

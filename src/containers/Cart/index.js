@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 
-import withErrorHandler from '../hoc/withErrorHandler';
+import withErrorHandler from '../../hoc/withErrorHandler';
 
-import Product from '../Product';
-import CustomTable from '../CustomTable';
-import Input from '../CustomInput';
+import Product from '../../components/Product';
+import CustomTable from '../../components/UI/CustomTable';
+import Input from '../../components/UI/CustomInput';
 import Button from 'react-bootstrap/Button';
-import Spinner from '../Spinner';
-import AlertModal from '../AlertModal';
-import Aux from '../hoc/Aux';
+import Spinner from '../../components/UI/Spinner';
+import AlertModal from '../../components/UI/AlertModal';
+import Aux from '../../hoc/Aux';
 
-import axios from '../axios';
+import axios from '../../axios';
 
 
 class Cart extends Component {

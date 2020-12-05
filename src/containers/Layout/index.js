@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
-import Aux from '../hoc/Aux';
+import Aux from '../../hoc/Aux';
 
-import Footer from '../Footer';
+import Footer from '../../components/Footer';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Products from '../Products';
 import Cart from '../Cart';
 import Kit from '../Kit';
 import Login from '../Login';
 import Orders from '../Orders';
-import withErrorHandler from '../hoc/withErrorHandler';
-import axios from '../axios';
+import withErrorHandler from '../../hoc/withErrorHandler';
+import axios from '../../axios';
 
 
 const layout = (props) => {

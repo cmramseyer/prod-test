@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-import CustomTable from '../CustomTable';
-import Spinner from '../Spinner';
-import CustomModal from '../CustomModal';
-import Aux from '../hoc/Aux';
-import Order from './Order';
-import AlertModal from '../AlertModal';
+import CustomTable from '../../components/UI/CustomTable';
+import Spinner from '../../components/UI/Spinner';
+import CustomModal from '../../components/UI/CustomModal';
+import Aux from '../../hoc/Aux';
+import Order from '../../components/Order';
+import AlertModal from '../../components/UI/AlertModal';
 
-import axios from '../axios';
+import axios from '../../axios';
 
 
 class Orders extends Component {
@@ -95,7 +95,8 @@ class Orders extends Component {
 
 const mapStateToProps = state => {
     return {
-        isAuthenticated: state.isAuthenticated
+        isAuthenticated: state.isAuthenticated,
+        userId: state.userId
     };
 }
   

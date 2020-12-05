@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Product from '../Product'
 import axios from 'axios';
-import Spinner from '../Spinner'
+import Spinner from '../UI/Spinner'
 
 
 class ProductList extends Component {
