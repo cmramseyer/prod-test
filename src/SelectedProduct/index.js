@@ -7,47 +7,15 @@ import RateProduct from '../RateProduct';
 
 function SelectedProduct(props) {
 
-    const [productData, setProductData] = useState([]);
-    
-    const [user, toggle, setToggle] = useContext(UserContext)
-
-    function handleSetToggle(){
-        toggle == "NO" ? setToggle("YES") : setToggle("NO");
-    }
-
-    useEffect(() => {
-        async function fetchData() {
-            console.log("useEffect!!");
-            console.log(props.selectedProductId);
-            console.log("useEffect!!");
-
-            if(props.selectedProductId != null) {
-                const result = await axios(
-                `${process.env.REACT_APP_API_HOST}/api/v1/products/${props.selectedProductId}.json`,
-                );
-    
-                setProductData(result.data);
-            
-                
-            }
-        }
-
-        fetchData();
-        
-        // useEffect is reloaded/rerendered when selectedProductId changes
-        // awesome!!
-    }, [props.selectedProductId]);
-    
+    console.log('--------------')
+    console.log(props)
     
     return (
         <div className="App-product">
-            <p>{productData.name}</p>
-            <p>{productData.description}</p>
-            <Button variant="secondary" onClick={handleSetToggle}>
-              toggle
-            </Button>
-            <p>Average Rating: {productData.average_rating}</p>            
-            <RateProduct selectedProductId={props.selectedProductId}></RateProduct>
+            <p>{props.name}</p>
+            <p>{props.description}</p>
+            <p>Average Rating: {props.average_rating}</p>            
+            <RateProduct selectedProductId={props.id}></RateProduct>
         </div>
     )
 }

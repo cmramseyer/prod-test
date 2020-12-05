@@ -5,13 +5,14 @@ import App from './App';
 import * as Sentry from '@sentry/browser';
 import * as serviceWorker from './serviceWorker';
 import Routes from './routes';
+import { createStore } from 'redux'
 import { Provider } from 'react-redux';
-import store from './store/index'
-console.log(store)
+import reducer from './store/reducer';
 
-window.store = store;
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
-Sentry.init({dsn: process.env.REACT_APP_SENTRY_DNS});
+
+// Sentry.init({dsn: process.env.REACT_APP_SENTRY_DNS});
 
 
 ReactDOM.render(

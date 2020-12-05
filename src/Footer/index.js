@@ -4,17 +4,8 @@ import React, { useState } from 'react';
 function Footer() {
   return (
     <div className="App-footer">
-        <p>
-            Footer
-        </p>
-        <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Learn React
-        </a>
+        <p>Footer</p>
+        <p>Shop Demo React App</p>
     </div>
   );
 }
