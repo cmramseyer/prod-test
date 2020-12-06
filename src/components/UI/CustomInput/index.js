@@ -9,6 +9,8 @@ const input = (props) => {
         errorMessage = <p>Enter a valid value!</p>
     }
 
+    console.log(props)
+    console.log(props.elementType)
 
     switch (props.elementType) {
         case ('input'):

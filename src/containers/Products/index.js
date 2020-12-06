@@ -4,6 +4,7 @@ import { addToCart } from '../../store/actions';
 
 import ProductList from '../../components/ProductList';
 import Product from '../../components/Product';
+import CustomInput from '../../components/UI/CustomInput';
 
 import CustomModal from '../../components/UI/CustomModal';
 import axios from '../../axios';
@@ -17,7 +18,22 @@ class Products extends Component {
     showProductModal: false,
     selectedProductId: null,
     selectedProduct: null,
-    productsCart: []
+    productsCart: [],
+    sortedBy: '',
+    sortInput: {
+      sortBy: {
+          elementType: 'select',
+          elementConfig: {
+              type: 'select',
+              placeholder: '',
+              options: [
+                { value: 'price', displayValue: 'Sort by price' },
+                { value: 'name', displayValue: 'Sort by name' }
+              ]
+          },
+          value: ''
+      }
+    }
   }
 
   
@@ -69,7 +85,15 @@ class Products extends Component {
       }
     }
 
-    
+    if (this.state.sortedBy !== nextState.sortedBy) {
+      axios.get("/products.json?sort_by=" + this.state.sortedBy)
+        .then(res => {
+          this.setState({products: res.data})
+        })
+        .catch(error => console.log(error))
+      
+    }
+
   }
 
   handleKeywordChange = (event) => {
@@ -84,6 +108,14 @@ class Products extends Component {
     console.log('handleSelectedProductId')
     this.setState({...this.state, selectedProductId: productId, showProductModal: true})
     
+  }
+
+  handleSortByChange = (event) => {
+    console.log('hanlde sort by')
+    console.log(event)
+    const value = event.target.value
+    console.log(value)
+    this.setState({sortedBy: value})
   }
 
 
@@ -148,6 +180,12 @@ class Products extends Component {
         {customModal}
         <div>
           <input type="text" className="input search-bar" placeholder="Search..." onChange={this.handleKeywordChange} />
+        </div>
+        <div>
+          <CustomInput
+          elementType={this.state.sortInput.sortBy.elementType}
+          elementConfig={this.state.sortInput.sortBy.elementConfig}
+          changed={this.handleSortByChange}></CustomInput>
         </div>
         <ProductList
           products={this.state.products}
