@@ -20,7 +20,7 @@ class Product extends Component {
         return (
 
                 <div key={this.props.id}
-                    className={this.props.colsm3 ? "col-sm-3" : ""}
+                    className="col-sm-12"
                     onClick={() => this.props.handleSelectedProductId(this.props.id)}>
                     <h3>{this.props.name}</h3>
                     <p>{this.props.description}</p>

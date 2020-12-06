@@ -23,12 +23,11 @@ class ProductList extends Component {
       productList = this.props.products.map(product => {
         return (
           <Product
-            colsm3
             key={product.id}
             handleSelectedProductId={this.props.handleSelectedProductId}
             id={product.id}
             name={product.name}
-            description={product.description.substring(0, 90)}
+            description={product.description}
             addProductsInCart={this.props.addProductsInCart}
             >      
           </Product>

@@ -19,6 +19,7 @@ class Products extends Component {
     selectedProductId: null,
     selectedProduct: null,
     productsCart: [],
+    page: 1,
     sortedBy: '',
     sortInput: {
       sortBy: {
@@ -39,7 +40,7 @@ class Products extends Component {
   
   componentDidMount = () => {
     console.log('componentDidMount')
-    axios.get("/products.json")
+    axios.get("/products.json?page=" + this.state.page)
       .then(res => {
         this.setState({products: res.data})
       })
@@ -94,6 +95,19 @@ class Products extends Component {
       
     }
 
+    if (this.state.page !== nextState.page) {
+      axios.get("/products.json?sort_by=" + this.state.sortedBy + '&page=' + this.state.page)
+        .then(res => {
+          this.setState({products: [...this.state.products, ...res.data]})
+        })
+        .catch(error => console.log(error))
+      
+    }
+
+  }
+
+  handleLoadMore = () => {
+    this.setState({page: this.state.page + 1})
   }
 
   handleKeywordChange = (event) => {
@@ -177,6 +191,7 @@ class Products extends Component {
 
     return (
       <div className="App-body">
+        <span onClick={this.handleLoadMore}>Load More</span>
         {customModal}
         <div>
           <input type="text" className="input search-bar" placeholder="Search..." onChange={this.handleKeywordChange} />
