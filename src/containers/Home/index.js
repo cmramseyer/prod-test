@@ -5,6 +5,7 @@ import { addToCart } from '../../store/actions';
 import ProductList from '../../components/ProductList';
 import Product from '../../components/Product';
 import ItemsList from '../../components/ItemsList';
+import Item from '../../components/Item';
 import CustomInput from '../../components/UI/CustomInput';
 
 import CustomModal from '../../components/UI/CustomModal';
@@ -16,9 +17,10 @@ class Home extends Component {
   state = {
     keyword: '',
     items: [],
-    showProductModal: false,
-    selectedProductId: null,
-    selectedProduct: null,
+    showModal: false,
+    selectedItem: null,
+    selectedItemType: null,
+    selectedItemId: null,
     productsCart: [],
     page: 1,
     sortedBy: '',
@@ -76,9 +78,16 @@ class Home extends Component {
 
   }
 
-  handleSelectedItem = (event) => {
+  handleSelectedItem = (itemType, id) => {
 
     console.log('handleSelectedItem')
+    console.log(itemType)
+    console.log(id)
+
+    const items = this.state.items;
+    const itemsFilteredByType = items.filter(i => Object.keys(i)[0] === itemType);
+    const selectedItem = itemsFilteredByType.find(i => i[itemType].id === id)
+    this.setState({selectedItemType: itemType, selectedItemId: id, selectedItem: selectedItem[itemType], showModal: true});
     
   }
 
@@ -114,9 +123,29 @@ class Home extends Component {
 
     console.log('render Home!!!')
 
+    let customModal = null;
+
+    if (this.state.selectedItem && this.state.showModal) {
+      customModal = <CustomModal
+          show={this.state.showModal}
+          handleCancel={this.handleClose}
+          handleOk={this.handleAddToCart }
+          itemId={this.state.selectedItemId}
+          title="Selected product"
+          cancelLabel="Cancel"
+          okLabel={`Add to Cart (${this.props.prdsCart.length})`}>
+          <Item 
+            itemType={this.state.selectedItemType} 
+            item={this.state.selectedItem}
+            handleSelectedItem={this.handleSelectedItem}> 
+          </Item>
+        </CustomModal>
+    }
+
     return (
       <div className="App-body">
         <span onClick={this.handleLoadMore}>Load More</span>
+        {customModal}
         <div>
           <input type="text" className="input search-bar" placeholder="Search..." onChange={this.handleKeywordChange} />
         </div>

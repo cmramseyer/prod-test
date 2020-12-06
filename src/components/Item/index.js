@@ -7,7 +7,7 @@ const item = (props) => {
     
     let item_element = null;
     console.log('item!!')
-    console.log(props.item)
+    console.log(props)
 
     switch(props.itemType) {
         case ('product'):
@@ -17,7 +17,7 @@ const item = (props) => {
             item_element = <ProductComment item={props.item}></ProductComment>
             break;
         case ('review'):
-            item_element = <Review item={props.item}></Review>
+            item_element = <Review item={props.item} handleSelectedItem={props.handleSelectedItem}></Review>
             break;
         default:
             break;

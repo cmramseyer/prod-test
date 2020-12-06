@@ -10,12 +10,13 @@ const ProductDiv = styled.div`
 `;
 
 const productComment = (props) => {
+
     
         return (
 
-                <div key={props.itemType + "-" + props.id}
+                <div key={"product_comment-" + props.id}
                     className="col-sm-12"
-                    onClick={() => props.handleSelectedItem(props.itemType, props.item.id)}>
+                    onClick={() => props.handleSelectedItem("product_comment", props.item.id)}>
                     <h2>Comment</h2>
                     <h3>Comment: {props.item.text}</h3>
                     <p>Likes: {props.item.likes}</p>

@@ -19,7 +19,7 @@ class ItemsList extends Component {
       productList = this.props.items.map(item => {
         const itemType = Object.keys(item)[0];
         return (
-          <Item item={item[itemType]} itemType={itemType}>      
+          <Item item={item[itemType]} itemType={itemType} handleSelectedItem={this.props.handleSelectedItem}>      
           </Item>
         )
 

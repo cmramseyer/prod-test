@@ -13,9 +13,9 @@ const product = (props) => {
 
         return (
 
-                <div key={props.itemType + "-" + props.id}
+                <div key={"product-" + props.id}
                     className="col-sm-12"
-                    onClick={() => props.handleSelectedItem(props.itemType, props.item.id)}>
+                    onClick={() => props.handleSelectedItem("product", props.item.id)}>
                     <h2>Product</h2>
                     <h3>{props.item.name}</h3>
                     <p>{props.item.description}</p>

@@ -19,7 +19,7 @@ const customModal = (props) => {
             <Button variant="secondary" onClick={props.handleCancel}>
               {props.cancelLabel}
             </Button>
-            <Button variant="primary" onClick={() => props.handleOk(props.productId)}>
+            <Button variant="primary" onClick={() => props.handleOk(props.itemId)}>
               {props.okLabel}
             </Button>
           </Modal.Footer>
