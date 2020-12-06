@@ -6,6 +6,7 @@ import Aux from '../../hoc/Aux';
 
 import Footer from '../../components/Footer';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Home from '../Home';
 import Products from '../Products';
 import Cart from '../Cart';
 import Kit from '../Kit';
@@ -40,6 +41,11 @@ const layout = (props) => {
 
         <Link className="App-link" 
           to="/">
+            Home
+        </Link>
+
+        <Link className="App-link" 
+          to="/products">
             Products
         </Link>
 
@@ -66,7 +72,8 @@ const layout = (props) => {
     </header>
 
     <Switch>
-      <Route exact path="/" component={Products}/>
+      <Route exact path="/" component={Home}/>
+      <Route exact path="/products" component={Products}/>
       <Route path="/cart" component={Cart} />
       <Route path="/kit" component={Kit} />
       <Route path="/orders" component={Orders} />

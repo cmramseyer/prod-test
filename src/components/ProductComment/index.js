@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import styled from 'styled-components';
 
@@ -9,20 +9,19 @@ const ProductDiv = styled.div`
   border: 1px solid;
 `;
 
-const product = (props) => {
-
+const productComment = (props) => {
+    
         return (
 
                 <div key={props.itemType + "-" + props.id}
                     className="col-sm-12"
                     onClick={() => props.handleSelectedItem(props.itemType, props.item.id)}>
-                    <h2>Product</h2>
-                    <h3>{props.item.name}</h3>
-                    <p>{props.item.description}</p>
-                    <p>{props.item.price}</p>
+                    <h2>Comment</h2>
+                    <h3>Comment: {props.item.text}</h3>
+                    <p>Likes: {props.item.likes}</p>
                 </div>
 
         )
 }
 
-export default product;
+export default productComment;

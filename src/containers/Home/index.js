@@ -3,18 +3,19 @@ import { connect } from 'react-redux';
 import { addToCart } from '../../store/actions';
 
 import ProductList from '../../components/ProductList';
-import Item from '../../components/Item';
+import Product from '../../components/Product';
+import ItemsList from '../../components/ItemsList';
 import CustomInput from '../../components/UI/CustomInput';
 
 import CustomModal from '../../components/UI/CustomModal';
 import axios from '../../axios';
 
 
-class Products extends Component {
+class Home extends Component {
 
   state = {
     keyword: '',
-    products: [],
+    items: [],
     showProductModal: false,
     selectedProductId: null,
     selectedProduct: null,
@@ -39,17 +40,8 @@ class Products extends Component {
 
   
   componentDidMount = () => {
-    console.log('componentDidMount')
-    axios.get("/products.json?page=" + this.state.page)
-      .then(res => {
-        this.setState({products: res.data})
-      })
-      .catch(error => console.log(error))
+    
   }
-
-
- 
-
 
   componentDidUpdate = (newProps, nextState) => {
     console.log('Component did update')
@@ -61,48 +53,14 @@ class Products extends Component {
     console.log(this.state.keyword)
 
 
-    if (this.state.selectedProductId !== nextState.selectedProductId) {
-      axios.get(`/products/${this.state.selectedProductId}.json`)
-      .then(res => {
-        console.log(res)
-        this.setState({...this.state, showProductModal: true, selectedProduct: res.data})
-      })
-      .catch(error => console.log(error))
-    }
-
     if (this.state.keyword !== nextState.keyword) {
-      if (this.state.keyword.length == 0) {
-        axios.get("/products.json?sort_by=" + this.state.sortedBy)
-        .then(res => {
-          this.setState({products: res.data})
-        })
-        .catch(error => console.log(error))
-      } else {
+      if (this.state.keyword.length != 0) {
         axios.get(`/results/?keywords=${this.state.keyword}?sort_by=${this.state.sortedBy}`)
         .then(res => {
-          debugger;
-          this.setState({products: res.data})
+          this.setState({items: res.data})
         })
         .catch(error => console.log(error))
-      }
-    }
-
-    if (this.state.sortedBy !== nextState.sortedBy) {
-      axios.get("/products.json?sort_by=" + this.state.sortedBy)
-        .then(res => {
-          this.setState({products: res.data})
-        })
-        .catch(error => console.log(error))
-      
-    }
-
-    if (this.state.page !== nextState.page) {
-      axios.get("/products.json?sort_by=" + this.state.sortedBy + '&page=' + this.state.page)
-        .then(res => {
-          this.setState({products: [...this.state.products, ...res.data]})
-        })
-        .catch(error => console.log(error))
-      
+      } 
     }
 
   }
@@ -118,12 +76,9 @@ class Products extends Component {
 
   }
 
-  handleSelectedItem = (itemType, id) => {
+  handleSelectedItem = (event) => {
 
     console.log('handleSelectedItem')
-    console.log(itemType)
-    console.log(id)
-    this.setState({...this.state, selectedProductId: id, showProductModal: true})
     
   }
 
@@ -135,13 +90,6 @@ class Products extends Component {
     this.setState({sortedBy: value})
   }
 
-
-  // const [showProductModal, setShowProductModal] = useState(false);
-  // const handleClose = () => setShowProductModal(false);
-  // const handleShow = () => setShowProductModal(true);
-
-  // const dispatch = useDispatch();
-  // const ProductsInCart = useSelector(state => state.productsInCart)
 
   handleAddToCart = (productId) => {
   
@@ -164,36 +112,11 @@ class Products extends Component {
 
   render () {
 
-    console.log('render Products!!!')
-
-    console.log('Selected product')
-    console.log(this.state.selectedProduct)
-    let customModal = null;
-
-    if (this.state.selectedProduct && this.state.showProductModal) {
-      customModal = <CustomModal
-          show={this.state.showProductModal}
-          handleCancel={this.handleClose}
-          handleOk={this.handleAddToCart }
-          productId={this.state.selectedProductId}
-          title="Selected product"
-          cancelLabel="Cancel"
-          okLabel={`Add to Cart (${this.props.prdsCart.length})`}>
-          <Item itemType='product' item={this.state.selectedProduct}>
-          </Item>
-        </CustomModal>
-    }
-
-    let logSel = null;
-
-    if (this.state.selectedProduct) {
-      logSel = Object.values(this.state.selectedProduct)
-    }
+    console.log('render Home!!!')
 
     return (
       <div className="App-body">
         <span onClick={this.handleLoadMore}>Load More</span>
-        {customModal}
         <div>
           <input type="text" className="input search-bar" placeholder="Search..." onChange={this.handleKeywordChange} />
         </div>
@@ -203,11 +126,11 @@ class Products extends Component {
           elementConfig={this.state.sortInput.sortBy.elementConfig}
           changed={this.handleSortByChange}></CustomInput>
         </div>
-        <ProductList
-          products={this.state.products}
+        <ItemsList
+          items={this.state.items}
           handleSelectedItem={this.handleSelectedItem}
           >
-        </ProductList>
+        </ItemsList>
       </div>
     )
   }
@@ -227,4 +150,4 @@ const mapStateToProps = state => {
 //  };
 //}
 
-export default connect(mapStateToProps, { addToCart })(Products);
+export default connect(mapStateToProps, { addToCart })(Home);

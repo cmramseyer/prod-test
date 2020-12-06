@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import Product from '../Product'
+import Item from '../Item';
 import axios from 'axios';
 import Spinner from '../UI/Spinner'
 
 
-class ProductList extends Component {
+class ItemsList extends Component {
 
     
     handleSearchKeyword = (event) => {
-      
-      
-
-
     }
 
     
@@ -19,16 +15,12 @@ class ProductList extends Component {
 
     let productList = <Spinner></Spinner>
 
-    if (this.props.products.length > 0) {
-      productList = this.props.products.map(product => {
+    if (this.props.items.length > 0) {
+      productList = this.props.items.map(item => {
+        const itemType = Object.keys(item)[0];
         return (
-          <Product
-            
-            handleSelectedItem={this.props.handleSelectedItem}
-            item={product}
-            addProductsInCart={this.props.addProductsInCart}
-            >      
-          </Product>
+          <Item item={item[itemType]} itemType={itemType}>      
+          </Item>
         )
 
       });
@@ -53,4 +45,4 @@ class ProductList extends Component {
   }
 }
 
-export default ProductList;
+export default ItemsList;
