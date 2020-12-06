@@ -1,5 +1,7 @@
 const initialState = {
-    productsCart: []
+    productsCart: [],
+    transactionId: null,
+    orderError: null
 }
 
 
@@ -24,6 +26,19 @@ const cartReducer = (state = initialState, action) => {
             return {
                 ...state,
                 productsCart: state.productsCart.concat(productsKitListForCart)
+            }
+        case 'SAVE_ORDER':
+            const transactionId = action.payload.transactionId;
+            return {
+                ...state,
+                productsCart: [],
+                transactionId: transactionId
+            }
+        case 'SAVE_ORDER_FAILED':
+            const error = action.payload.error;
+            return {
+                ...state,
+                order_error: error
             }
         default:
             return state;

@@ -24,15 +24,20 @@ const withErrorHandler = (WrappedComponent, axios) => {
                 return req;
             });
 
-            this.resInterceptor = axios.interceptors.response.use(res => res, error => {
+            this.resInterceptor = axios.interceptors.response.use(res => {
+                console.log('Axios interceptor response')
+                console.log(res)
+                return res
+            }, error => {
                 console.log('axios response withErrorHandler')
                 console.log("")
                 console.log('axios error withErrorHandler')
                 console.log(error)
 
-                const errMessage = error.response.data.message;
+                //const errMessage = error.response.data.message;
 
-                this.setState({error: error, errorMessage: errMessage})
+                //this.setState({error: error, errorMessage: errMessage})
+                return error;
             });
         }
 

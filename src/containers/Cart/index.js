@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { emptyCart } from '../../store/actions';
+import { emptyCart, createOrder } from '../../store/actions';
 import { Redirect } from 'react-router-dom';
 
 import withErrorHandler from '../../hoc/withErrorHandler';
@@ -19,7 +19,6 @@ import axios from '../../axios';
 class Cart extends Component {
 
     state = {
-        transactionId: null,
         loading: false,
         showModal: false,
         orderForm: {
@@ -131,16 +130,7 @@ class Cart extends Component {
 
         
 
-        axios.post("/orders.json", order)
-            .then(response => {
-                console.log(response)
-                const transactionId = response.data.transaction_id
-                this.setState({showModal: true, transactionId: transactionId})
-
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        this.props.createOrder(order);
     }
 
     handleCancel = () => {
@@ -212,11 +202,23 @@ class Cart extends Component {
                 {form}
             </Aux>
         }
+
+        let transaction = null;
+        if (this.props.transactionId) {
+            transaction = <h2>Your last order transaction id payment is: {this.props.transactionId}</h2>
+        }
+
+        let error = null;
+        if (this.props.orderError) {
+            error = <h2>Error: {this.props.orderError}</h2>
+        }
         
 
         return (
             <div className="App-cart">
                 {this.props.isAuthenticated ? null : <Redirect to={"/login"}/>}
+                {transaction}
+                {error}
                 {body}
             </div>
         );
@@ -227,9 +229,10 @@ class Cart extends Component {
 const mapStateToProps = state => {
     return {
         prdsCart: state.cart.productsCart,
+        transactionId: state.cart.transactionId,
         userId: state.auth.userId,
         isAuthenticated: state.auth.isAuthenticated
     };
 }
   
-export default connect(mapStateToProps, { emptyCart })(Cart);
+export default connect(mapStateToProps, { emptyCart, createOrder })(Cart);
