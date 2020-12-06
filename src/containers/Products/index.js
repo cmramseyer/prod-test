@@ -71,13 +71,13 @@ class Products extends Component {
 
     if (this.state.keyword !== nextState.keyword) {
       if (this.state.keyword.length == 0) {
-        axios.get("/products.json")
+        axios.get("/products.json?sort_by=" + this.state.sortedBy)
         .then(res => {
           this.setState({products: res.data})
         })
         .catch(error => console.log(error))
       } else {
-        axios.get(`/results/?keywords=${this.state.keyword}`)
+        axios.get(`/results/?keywords=${this.state.keyword}?sort_by=${this.state.sortedBy}`)
         .then(res => {
           this.setState({products: res.data})
         })
