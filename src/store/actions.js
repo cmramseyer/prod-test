@@ -11,9 +11,19 @@ export const addToCart = product => ({
     payload: { product: product }
 });
 
-export const emptyCart = () => ({
-    type: EMPTY_CART
-});
+// thunk example
+export const empty = () => {
+    return { type: EMPTY_CART }
+}
+
+export const emptyCart = () => {
+    return dispatch => {
+        setTimeout( () => {
+            dispatch(empty())
+        }, 3000);
+    }
+};
+// end thunk example
 
 export const addKitToCart = products => ({
     type: ADD_KIT_TO_CART,
